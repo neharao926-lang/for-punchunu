@@ -221,13 +221,13 @@ p { font-size: 1rem; }
 <div class="letter">
 Dear Punchunu,
 
-You are my forever and my always, and there is no one in this world who compares to you. You are my favourite person and the only one i want to talk to when im happy or sad or excited. You're the one I love talking to the most, laughing with and sharing everything with.
+You are my forever and my always, and there is no one in this world who compares to you. You are my favourite person and the only one I want to talk to when im happy or sad or excited. You're the one I love talking to the most, laughing with and sharing everything with.
 
-I can’t believe we’re just one more month for our 3 year anniversary. can't wait to make so many more memories with you. you are everything to me.
+I can’t believe we’re just one more month for our 3 year anniversary. Can't wait to make so many more memories with you. you are everything to me.
 
 I love you so much!
 
-with love,
+With love,
 your nehu 💗
 </div>
 <button class="btn" onclick="goYes()">⬅ Back</button>
@@ -278,57 +278,67 @@ is officially <strong>claimed, loved, and adored</strong> by<br>
 <div class="watermark">Punchunu 💗</div>
 
 <script>
+/* ---------- SCREEN SWITCHING ---------- */
 function hideAll() {
   document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
 }
 
-function yesClicked() { hideAll(); screenYes.classList.remove('hidden'); }
-function goYes() { hideAll(); screenYes.classList.remove('hidden'); }
-
-function gift1(){ hideAll(); gift1.classList.remove('hidden'); }
-function gift2(){ hideAll(); gift2.classList.remove('hidden'); }
-function gift3(){ hideAll(); gift3.classList.remove('hidden'); }
-function gift4(){ hideAll(); gift4.classList.remove('hidden'); }
-function gift5(){ hideAll(); gift5.classList.remove('hidden'); }
-
-function dangerClicked(){
-  document.getElementById('dangerText').style.display='block';
+function yesClicked() {
+  hideAll();
+  document.getElementById('screenYes').classList.remove('hidden');
 }
 
+function goYes() {
+  hideAll();
+  document.getElementById('screenYes').classList.remove('hidden');
+}
+
+function gift1(){ hideAll(); document.getElementById('gift1').classList.remove('hidden'); }
+function gift2(){ hideAll(); document.getElementById('gift2').classList.remove('hidden'); }
+function gift3(){ hideAll(); document.getElementById('gift3').classList.remove('hidden'); }
+function gift4(){ hideAll(); document.getElementById('gift4').classList.remove('hidden'); }
+function gift5(){ hideAll(); document.getElementById('gift5').classList.remove('hidden'); }
+
+/* ---------- DO NOT CLICK ---------- */
+function dangerClicked(){
+  document.getElementById('dangerText').style.display = 'block';
+}
+
+/* ---------- ENDING ---------- */
 function ending(){
   hideAll();
   document.getElementById('ending').classList.remove('hidden');
-  for(let i=0;i<30;i++){
-    const e=document.createElement('div');
-    e.className='evil';
-    e.innerHTML='😈';
-    e.style.left=Math.random()*100+'vw';
-    e.style.bottom='-20px';
+
+  for(let i = 0; i < 30; i++){
+    const e = document.createElement('div');
+    e.className = 'evil';
+    e.innerHTML = '😈';
+    e.style.left = Math.random() * 100 + 'vw';
+    e.style.bottom = '-20px';
     document.body.appendChild(e);
-    setTimeout(()=>e.remove(),6000);
+    setTimeout(() => e.remove(), 6000);
   }
 }
- // No thanks button runs away 😌
+
+/* ---------- NO THANKS RUNAWAY (FIXED) ---------- */
 const noBtn = document.getElementById("noBtn");
-let escapeCount = 0;
+
+noBtn.style.position = "relative"; // IMPORTANT
 
 noBtn.addEventListener("mouseenter", () => {
-  const x = Math.random() * 220 - 110;
-  const y = Math.random() * 140 - 70;
+  const x = Math.random() * 240 - 120;
+  const y = Math.random() * 160 - 80;
 
+  noBtn.style.transition = "transform 0.35s ease";
   noBtn.style.transform = `translate(${x}px, ${y}px)`;
-  noBtn.style.transition = "transform 0.4s ease";
-
-  escapeCount++;
 });
 
-// If he somehow clicks it
 noBtn.addEventListener("click", () => {
   alert("Nice try 😌");
 });
-
 </script>
 
 </body>
 </html>
+
 
