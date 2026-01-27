@@ -90,6 +90,9 @@ body {
   animation: pop 0.8s ease;
 }
 
+  #screen1 {
+  overflow: visible;
+}
 
 .hidden { display: none; }
 
@@ -117,13 +120,10 @@ h1 {
   background: #ffd1e6;
   color: #8a004f;
   position: absolute;
-  transition: transform 0.4s ease;
+  left: calc(50% + 60px);
+  transition: transform 0.25s ease;
 }
 
-/* VERY IMPORTANT — kills hover conflicts */
-.no:hover {
-  transform: none !important;
-}
 
 .envelope { font-size: 2.4rem; margin-bottom: 10px; }
 
@@ -174,10 +174,16 @@ h1 {
 @keyframes pop { from {transform:scale(0.8);opacity:0;} }
 @keyframes pulse { 70% { box-shadow: 0 0 0 12px rgba(255,95,162,0); } }
 @keyframes evil { to { transform: translateY(-120vh) rotate(360deg); } }
-  /* FIX runaway button hover conflict */
-.no:hover {
-  transform: none !important;
+  
+.btn-row {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 }
+    
 </style>
 </head>
 
@@ -185,8 +191,11 @@ h1 {
 
 <div class="card" id="screen1">
   <h1>Will you be my Valentine, Punchunu? 💕</h1>
-  <button class="btn yes" onclick="yesClicked()">Yes, of course 💖</button>
-  <button class="btn no" id="noBtn" onclick="noClicked()">No thanks 🙄</button>
+
+  <div class="btn-row">
+    <button class="btn yes" onclick="yesClicked()">Yes, of course 💖</button>
+    <button class="btn no" id="noBtn" onclick="noClicked()">No thanks 🙄</button>
+  </div>
 </div>
 
   <div class="card hidden" id="screenNo">
@@ -311,7 +320,7 @@ function gift4(){ hideAll(); document.getElementById('gift4').classList.remove('
 function gift5(){ hideAll(); document.getElementById('gift5').classList.remove('hidden'); }
 
 // NO BUTTON LOGIC (STEP 5)
-let runawayEnabled = false;
+let runawayEnabled = true; // allow runaway immediately
 let noCount = 0;
 
 const noResponses = [
@@ -346,11 +355,11 @@ function goHome() {
 
 const noBtn = document.getElementById("noBtn");
 
-noBtn.addEventListener("mouseenter", () => {
+noBtn.addEventListener("mouseover", () => {
   if (!runawayEnabled) return;
 
-  const x = Math.random() * 200 - 100;
-  const y = Math.random() * 120 - 60;
+  const x = Math.random() * 320 - 160;
+  const y = Math.random() * 220 - 110;
   noBtn.style.transform = `translate(${x}px, ${y}px)`;
 });
 
@@ -383,4 +392,5 @@ function ending(){
 
 </body>
 </html>
+
 
