@@ -1,313 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Be My Valentine 💖</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Be My Valentine 💖</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <style>
-    * { box-sizing: border-box; }
+<style>
+* { box-sizing: border-box; }
 
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #ffd6e8, #ffeef5);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #5a0036;
-      overflow-y: auto;
-      cursor: url('https://cur.cursors-4u.net/hearts/hea-1/hea17.cur'), auto;
-    }
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ffd6e8, #ffeef5);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #5a0036;
+  overflow-y: auto;
+  cursor: url('https://cur.cursors-4u.net/hearts/hea-1/hea17.cur'), auto;
+}
 
-    .card {
-      background: #fff0f7;
-      padding: 30px;
-      border-radius: 24px;
-      width: 90%;
-      max-width: 420px;
-      text-align: center;
-      box-shadow: 0 20px 40px rgba(255, 105, 180, 0.25);
-      animation: popIn 0.8s ease;
-      margin: 40px 0;
-    }
+.card {
+  background: #fff0f7;
+  padding: 32px;
+  border-radius: 26px;
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(255,105,180,0.25);
+  animation: popIn 0.8s ease;
+  margin: 50px 0;
+}
 
-    h1 {
-      font-family: 'Pacifico', cursive;
-      font-size: 2.2rem;
-      margin-bottom: 20px;
-    }
+.hidden { display: none; }
 
-    p { font-size: 1rem; }
+h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 2.2rem;
+  margin-bottom: 16px;
+}
 
-    .btn {
-      margin: 10px;
-      padding: 12px 20px;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+p { font-size: 1rem; }
 
-    .btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 8px 20px rgba(255, 105, 180, 0.35);
-    }
+.btn {
+  margin: 10px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
 
-    .yes {
-      background: #ff5fa2;
-      color: white;
-      animation: pulse 2s infinite;
-    }
+.btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(255,105,180,0.35);
+}
 
-    .no {
-      background: #ffd1e6;
-      color: #8a004f;
-    }
+.yes {
+  background: #ff5fa2;
+  color: white;
+  animation: pulse 2s infinite;
+}
 
-    .gifts button {
-      background: #ffb3d9;
-      color: #6b003b;
-    }
+.no {
+  background: #ffd1e6;
+  color: #8a004f;
+}
 
-    .hidden { display: none; }
+/* Scroll hint */
+.scroll-hint {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  opacity: 0.85;
+  animation: bounce 1.5s infinite;
+}
 
-    .letter {
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      border: 2px dashed #ff8fc7;
-      max-height: 250px;
-      overflow-y: auto;
-      text-align: left;
-      font-size: 0.95rem;
-      white-space: pre-wrap;
-      position: relative;
-      animation: typing 2s ease;
-    }
+/* Letter */
+.envelope {
+  font-size: 2.3rem;
+  margin-bottom: 10px;
+  animation: openEnvelope 1.2s ease;
+}
 
-    .letter::before {
-      content: '✉️';
-      position: absolute;
-      top: -25px;
-      right: 10px;
-      font-size: 20px;
-    }
+.letter {
+  background: #fffdf8;
+  padding: 28px;
+  border-radius: 18px;
+  border: 1.5px solid #ffd1e6;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  text-align: left;
+  white-space: pre-line;
+  box-shadow: 0 10px 25px rgba(255,182,193,0.25);
+}
 
-    .countdown {
-      font-size: 0.95rem;
-      margin-bottom: 10px;
-      color: #8a004f;
-    }
+/* Reasons */
+.reasons { text-align: left; }
+.reason {
+  background: #fff;
+  padding: 14px 16px;
+  border-radius: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 6px 16px rgba(255,182,193,0.25);
+  animation: fadeUp 0.6s ease forwards;
+}
 
-    .heart {
-      position: fixed;
-      bottom: -20px;
-      color: rgba(255,182,193,0.4);
-      font-size: 18px;
-      animation: floatUp linear infinite;
-    }
+/* Certificate */
+.certificate {
+  background: #fffdf8;
+  border: 2px solid #ffb3d9;
+  border-radius: 22px;
+  padding: 26px;
+  box-shadow: 0 12px 30px rgba(255,182,193,0.35);
+}
+.certificate h2 {
+  font-family: 'Pacifico', cursive;
+}
+.stamp {
+  margin-top: 16px;
+  font-size: 1.2rem;
+  color: #ff5fa2;
+  transform: rotate(-10deg);
+}
 
-    .sparkle {
-      position: fixed;
-      pointer-events: none;
-      font-size: 14px;
-      animation: sparkleFade 1s forwards;
-    }
+/* DO NOT CLICK */
+.danger-btn {
+  background: #ff6b9d;
+  color: white;
+  font-weight: bold;
+  padding: 16px 24px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  animation: pulse 1.5s infinite;
+}
 
-    .confetti {
-      position: fixed;
-      width: 8px;
-      height: 8px;
-      background: pink;
-      animation: confettiFall 3s linear forwards;
-    }
+.danger-text { display: none; margin-top: 18px; }
 
-    .watermark {
-      position: fixed;
-      bottom: 12px;
-      right: 16px;
-      font-size: 0.8rem;
-      color: rgba(138,0,79,0.35);
-      font-family: 'Pacifico', cursive;
-    }
+/* Evil ending */
+.evil {
+  position: fixed;
+  color: rgba(255,0,100,0.4);
+  font-size: 20px;
+  animation: evilFloat 6s linear infinite;
+}
 
-    @keyframes popIn {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
+.watermark {
+  position: fixed;
+  bottom: 12px;
+  right: 16px;
+  font-size: 0.8rem;
+  color: rgba(138,0,79,0.35);
+  font-family: 'Pacifico', cursive;
+}
 
-    @keyframes floatUp {
-      from { transform: translateY(0); opacity: 0; }
-      to { transform: translateY(-110vh); opacity: 1; }
-    }
-
-    @keyframes sparkleFade {
-      to { transform: translateY(-15px) scale(0.5); opacity: 0; }
-    }
-
-    @keyframes confettiFall {
-      to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
-    }
-
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(255,95,162,0.6); }
-      70% { box-shadow: 0 0 0 12px rgba(255,95,162,0); }
-      100% { box-shadow: 0 0 0 0 rgba(255,95,162,0); }
-    }
-
-    @keyframes typing {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-  </style>
+/* Animations */
+@keyframes popIn { from {transform:scale(0.8);opacity:0;} to {transform:scale(1);opacity:1;} }
+@keyframes bounce { 50% { transform: translateY(6px); } }
+@keyframes fadeUp { from {opacity:0;transform:translateY(12px);} to {opacity:1;} }
+@keyframes pulse { 70% { box-shadow: 0 0 0 12px rgba(255,95,162,0); } }
+@keyframes openEnvelope { from {transform:scale(0.6) rotateX(90deg);} }
+@keyframes evilFloat { to { transform: translateY(-120vh) rotate(360deg); } }
+</style>
 </head>
 
 <body>
 
-  <div class="card" id="screen1">
-    <div class="countdown" id="countdown"></div>
-    <h1>Will you be my Valentine, Punchunu? 💕</h1>
-    <button class="btn yes" onclick="yesClicked()">Yes, of course 💖</button>
-    <button class="btn no" id="noBtn" onclick="noClicked()">No thanks 🙄</button>
-  </div>
+<!-- MAIN -->
+<div class="card" id="screen1">
+  <h1>Will you be my Valentine, Punchunu? 💕</h1>
+  <button class="btn yes" onclick="yesClicked()">Yes, of course 💖</button>
+  <button class="btn no" onclick="noClicked()">No thanks 🙄</button>
+</div>
 
-  <div class="card hidden" id="screenNo">
-    <h1>Excuse me??? 😤</h1>
-    <p>Wrong answer. Try again.</p>
-    <button class="btn yes" onclick="goHome()">Okay okay 😅</button>
-  </div>
+<!-- YES -->
+<div class="card hidden" id="screenYes">
+  <h1>YAYYYY 💕</h1>
+  <p>My favourite person said yes.</p>
+  <div class="scroll-hint">Scroll for cute surprises ↓</div>
 
-  <div class="card hidden" id="screenYes">
-    <h1>YAYYYY 💕</h1>
-    <p>My favourite person said yes.</p>
-    <p><strong>Scroll for cute surprises 💘</strong></p>
+  <button class="btn" onclick="gift1()">🎁 Gift 1</button>
+  <button class="btn" onclick="gift2()">🎁 Gift 2</button>
+  <button class="btn" onclick="gift3()">🎁 Gift 3</button>
+  <button class="btn" onclick="gift4()">🎓 Gift 4</button>
+  <button class="btn" onclick="gift5()">🚫 Gift 5</button>
+  <button class="btn" onclick="ending()">😈 The End</button>
+</div>
 
-    <div class="gifts">
-      <button class="btn" onclick="gift1()">🎁 Gift 1</button>
-      <button class="btn" onclick="gift2()">🎁 Gift 2</button>
-      <button class="btn" onclick="gift3()">🎁 Gift 3</button>
-    </div>
-  </div>
+<!-- GIFT 1 -->
+<div class="card hidden" id="gift1">
+<h1>Reasons I Love You 💗</h1>
+<div class="reasons">
+<div class="reason">You always make me laugh 🤍</div>
+<div class="reason">You're the one person I can always count on for anything</div>
+<div class="reason">You're my safe space always</div>
+<div class="reason">You have the most beautiful eyes</div>
+<div class="reason">You truly understand me</div>
+<div class="reason">You tolerate and love my yapping</div>
+<div class="reason">You make me feel adored and appreciated</div>
+<div class="reason">You're always doing small gestures that make me feel loved</div>
+<div class="reason">You makes sure we never go to bed angry</div>
+<div class="reason">You match my love languages</div>
+<div class="reason">You're absolutely perfect</div>
+<div class="reason">You're so smart and hardworking</div>
+<div class="reason">You means the world to me</div>
+<div class="reason">You're so attractive</div>
+</div>
+<p style="font-style:italic">this and a million more reasons</p>
+<button class="btn" onclick="goYes()">⬅ Back</button>
+</div>
 
-  <div class="card hidden" id="gift1">
-    <h1>Reasons I Love You 💗</h1>
-    <div class="letter">
-• You always make me laugh 🤍
-• You’re the one person I can always count on for absolutely anything
-• You are my safe space, always
-• You have the most beautiful eyes
-• You truly understand me
-• You tolerate and love my yapping
-• You make me feel so adored and appreciated
-• You’re always doing the smallest gestures that make me feel deeply loved
-• You make sure we never go to bed angry
-• You understand my love languages
-• You are absolutely perfect to me
-• You’re incredibly smart and hardworking
-• You mean the world to me
-• And yes… you’re insanely attractive 
-
-And this… is just a million reasons more.
-    </div>
-    <button class="btn" onclick="goYes()">⬅ Back</button>
-  </div>
-
-  <div class="card hidden" id="gift2">
-    <h1>A letter for you 💌</h1>
-    <div class="letter">
+<!-- GIFT 2 -->
+<div class="card hidden" id="gift2">
+<h1>A letter for you 💌</h1>
+<div class="envelope">💌</div>
+<div class="letter">
 Dear Punchunu,
 
-You are my forever and my always, and there is no one in this world who compares to you. You are my most favourite person and the one I want to talk to when I’m happy, when I’m sad, and when I’m excited. You're the one I love talking to the most, laughing with and sharing everything with.
+You are my forever and my always, and there is no one in this world who compares to you. You are my favourite person and the only one i want to talk to when im happy or sad or excited. You're the one I love talking to the most, laughing with and sharing everything with.
 
-I can’t believe we’re just one more month away from celebrating three years together. One of my favourite things to do is replay our memories in my head, and I can’t wait to make so many more with you, my darling boy.
+I can’t believe we’re just one more month for our 3 year anniversary. can't wait to make so many more memories with you. you are everything to me.
 
-You mean everything to me, Punchunu.
-I love you more than words could ever say.
+I love you so much!
 
-With all my love,
-Your Nehu 💗
-    </div>
-    <button class="btn" onclick="goYes()">⬅ Back</button>
-  </div>
+with love,
+your nehu 💗
+</div>
+<button class="btn" onclick="goYes()">⬅ Back</button>
+</div>
 
-  <div class="card hidden" id="gift3">
-    <h1>Scan me 🎶</h1>
-    <p>This song is for you</p>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://music.apple.com/ug/song/those-eyes/1663074502" />
-    <button class="btn" onclick="goYes()">⬅ Back</button>
-  </div>
+<!-- GIFT 3 -->
+<div class="card hidden" id="gift3">
+<h1>Scan me 🎶</h1>
+<p>This song is for you</p>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://music.apple.com/ug/song/those-eyes/1663074502">
+<button class="btn" onclick="goYes()">⬅ Back</button>
+</div>
 
-  <div class="watermark">Punchunu 💗</div>
+<!-- GIFT 4 -->
+<div class="card hidden" id="gift4">
+<h1>Official Certificate 💗</h1>
+<div class="certificate">
+<h2>Valentine Certification</h2>
+<p>This certifies that<br><strong>Punchunu</strong><br>
+is officially <strong>claimed, loved, and adored</strong> by<br>
+<strong>Nehu 💗</strong></p>
+<p>Valid until: Forever ♾️<br>Renewal: Automatic</p>
+<div class="stamp">✔ APPROVED</div>
+</div>
+<button class="btn" onclick="goYes()">⬅ Back</button>
+</div>
 
-  <script>
-    // Countdown
-    function updateCountdown() {
-      const year = new Date().getFullYear();
-      const target = new Date(year, 1, 14);
-      const now = new Date();
-      const diff = target - now;
-      const el = document.getElementById('countdown');
-      if (diff > 0) {
-        el.textContent = `💘 ${Math.ceil(diff / 86400000)} days until Valentine’s Day`;
-      } else {
-        el.textContent = `💘 It’s Valentine’s Day!`;
-      }
-    }
-    updateCountdown();
+<!-- GIFT 5 -->
+<div class="card hidden" id="gift5">
+<h1>DO NOT CLICK 🚫</h1>
+<button class="danger-btn" onclick="dangerClicked()">DO NOT CLICK</button>
+<div class="danger-text" id="dangerText">
+<p>You literally never listen to me 🙄</p>
+<p>Anyway…</p>
+<p>Well well well 😏</p>
+<p>Now you owe me unlimited hugs, kisses, and the cutest Valentine’s Day.</p>
+</div>
+<button class="btn" onclick="goYes()">⬅ Back</button>
+</div>
 
-    // Hearts
-    for (let i = 0; i < 25; i++) {
-      const h = document.createElement('div');
-      h.className = 'heart';
-      h.innerHTML = '❤';
-      h.style.left = Math.random() * 100 + 'vw';
-      h.style.animationDuration = 6 + Math.random() * 6 + 's';
-      document.body.appendChild(h);
-    }
+<!-- ENDING -->
+<div class="card hidden" id="ending">
+<h1>You're stuck with me 😈</h1>
+<p>No take backs. No refunds.</p>
+<p>I hope you’re ready for a shit ton of love, chaos, and me.</p>
+</div>
 
-    // Sparkles
-    window.addEventListener('mousemove', e => {
-      const s = document.createElement('div');
-      s.className = 'sparkle';
-      s.textContent = '✨';
-      s.style.left = e.clientX + 'px';
-      s.style.top = e.clientY + 'px';
-      document.body.appendChild(s);
-      setTimeout(() => s.remove(), 1000);
-    });
+<div class="watermark">Punchunu 💗</div>
 
-    function hideAll() {
-      document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
-    }
+<script>
+function hideAll() {
+  document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+}
 
-    function yesClicked() {
-      hideAll();
-      document.getElementById('screenYes').classList.remove('hidden');
-      for (let i = 0; i < 80; i++) {
-        const c = document.createElement('div');
-        c.className = 'confetti';
-        c.style.left = Math.random() * 100 + 'vw';
-        document.body.appendChild(c);
-        setTimeout(() => c.remove(), 3000);
-      }
-    }
+function yesClicked() { hideAll(); screenYes.classList.remove('hidden'); }
+function noClicked() { alert("Nice try 😌"); }
+function goYes() { hideAll(); screenYes.classList.remove('hidden'); }
 
-    function noClicked() {
-      hideAll();
-      document.getElementById('screenNo').classList.remove('hidden');
-    }
+function gift1(){ hideAll(); gift1.classList.remove('hidden'); }
+function gift2(){ hideAll(); gift2.classList.remove('hidden'); }
+function gift3(){ hideAll(); gift3.classList.remove('hidden'); }
+function gift4(){ hideAll(); gift4.classList.remove('hidden'); }
+function gift5(){ hideAll(); gift5.classList.remove('hidden'); }
 
-    function goHome() { hideAll(); screen1.classList.remove('hidden'); }
-    function goYes() { hideAll(); screenYes.classList.remove('hidden'); }
-    function gift1() { hideAll(); gift1.classList.remove('hidden'); }
-    function gift2() { hideAll(); gift2.classList.remove('hidden'); }
-    function gift3() { hideAll(); gift3.classList.remove('hidden'); }
-  </script>
+function dangerClicked(){
+  document.getElementById('dangerText').style.display='block';
+}
+
+function ending(){
+  hideAll();
+  document.getElementById('ending').classList.remove('hidden');
+  for(let i=0;i<30;i++){
+    const e=document.createElement('div');
+    e.className='evil';
+    e.innerHTML='😈';
+    e.style.left=Math.random()*100+'vw';
+    e.style.bottom='-20px';
+    document.body.appendChild(e);
+    setTimeout(()=>e.remove(),6000);
+  }
+}
+</script>
 
 </body>
 </html>
