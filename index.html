@@ -16,7 +16,7 @@
   justify-content: center;
   align-items: center;
   color: #5a0036;
-  overflow: hidden;
+  overflow-y: auto;
   cursor: url('https://cur.cursors-4u.net/hearts/hea-1/hea17.cur'), auto;
       cursor: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') 16 16, auto;
       margin: 0;
@@ -276,14 +276,15 @@
 
   <div class="card hidden" id="screenYes">
   <h1>YAYYYY 💕</h1>
-    <h1>Thank you for gracing me with this honour, Punchunu 💘<br><br><em>See you on Valentine’s Day 💞</em></h1>
-    <p>Here are 3 gifts for you</p>
-    <div class="gifts">
-      <button class="btn" onclick="gift1()">🎁 Gift 1</button>
-      <button class="btn" onclick="gift2()">🎁 Gift 2</button>
-      <button class="btn" onclick="gift3()">🎁 Gift 3</button>
-    </div>
+  <p>My favourite person said yes.</p>
+  <p><strong>Scroll for cute surprises 💘</strong></p>
+
+  <div class="gifts">
+    <button class="btn" onclick="gift1()">🎁 Gift 1</button>
+    <button class="btn" onclick="gift2()">🎁 Gift 2</button>
+    <button class="btn" onclick="gift3()">🎁 Gift 3</button>
   </div>
+</div>
 
   <div class="card hidden" id="gift1">
   <h1>Reasons I Love You 💗</h1>
@@ -293,11 +294,11 @@
 • You are my safe space, always
 • You have the most beautiful eyes
 • You truly understand me
-• You tolerate — and love — my yapping
+• You tolerate and love my yapping
 • You make me feel so adored and appreciated
 • You’re always doing the smallest gestures that make me feel deeply loved
 • You make sure we never go to bed angry
-• When we’re together, you take me to restaurants you know I like — even if they aren’t your favourite
+• You understand my love languages
 • You are absolutely perfect to me
 • You’re incredibly smart and hardworking
 • You mean the world to me
@@ -313,7 +314,7 @@ And this… is just a million reasons more.
     <div class="letter">
       <p><strong>Dear Punchunu,
 
-You are my forever and my always, and there is no one in this world who compares to you. You are my favourite person — the one I want to talk to when I’m happy, when I’m sad, and when I’m excited. You’re the person I love talking to the most, laughing with the most, and sharing everything with.
+You are my forever and my always, and there is no one in this world who compares to you. You are my favourite person, the one I want to talk to when I’m happy, when I’m sad, and when I’m excited. You’re the person I love talking to the most, laughing with the most, and sharing everything with.
 
 I can’t believe we’re just one more month away from celebrating three years together. One of my favourite things to do is replay our memories in my head, and I can’t wait to make so many more with you, my darling boy.
 
@@ -338,14 +339,14 @@ Your Nehu 💗</strong></p>
   <script>
 let noCount = 0;
 const noResponses = [
-  "Punchunu?? 🤨",
-  "Excuse me? 🤨",
+  "Hello?? 🤨",
+  "So you hate me? 🤨",
   "Try again 😒",
-  "That was rude 😤",
+  "The audacity 😤",
   "I am judging you 👀",
   "This button is getting tired 🙄",
   "Wrong choice bestie 😠",
-  "Okay now you're just teasing 😈"
+  "Okay now you're just being mean 😈"
 ];
 
 // Countdown to Feb 14
@@ -470,3 +471,4 @@ window.addEventListener('mousemove', e => {
 <div class="watermark">Punchunu 💗</div>
 </body>
 </html>
+
