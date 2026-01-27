@@ -21,60 +21,63 @@ body {
   color: #5a0036;
   overflow-y: auto;
   cursor: url('https://cur.cursors-4u.net/hearts/hea-1/hea17.cur'), auto;
+  position: relative;
+}
+
+/* FLOATING HEARTS BACKGROUND */
+.floating-heart {
+  position: fixed;
+  font-size: 20px;
+  opacity: 0.6;
+  animation: float-up 8s infinite ease-in;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes float-up {
+  0% { 
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { 
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
 }
 
 /* Sparkle trail */
 .sparkle {
   position: fixed;
   pointer-events: none;
-  font-size: 14px;
-  animation: sparkle 1s forwards;
-}
-  .cert-title {
-  font-family: 'Pacifico', cursive;
-  font-size: 1.4rem;
-  color: #ff5fa2;
-  margin-bottom: 14px;
-}
-
-.cert-text {
-  font-size: 0.95rem;
-  margin: 10px 0;
-}
-
-.cert-name {
-  font-family: 'Pacifico', cursive;
-  font-size: 1.8rem;
-  color: #8a004f;
-  margin: 16px 0;
-}
-
-.cert-from {
-  font-weight: 600;
-  margin-top: 8px;
-}
-
-.cert-footer {
-  font-size: 0.85rem;
-  margin-top: 16px;
-  opacity: 0.85;
-}
-
-.stamp {
-  position: absolute;
-  right: 18px;
-  bottom: 18px;
-  font-size: 0.95rem;
-  color: #ff5fa2;
-  border: 2px solid #ff5fa2;
-  padding: 6px 12px;
-  border-radius: 8px;
-  transform: rotate(-12deg);
-  background: rgba(255,95,162,0.1);
+  font-size: 16px;
+  animation: sparkle 1.2s forwards;
+  z-index: 9999;
 }
 
 @keyframes sparkle {
-  to { transform: translateY(-20px) scale(0.3); opacity: 0; }
+  to { 
+    transform: translateY(-30px) scale(0.3) rotate(180deg); 
+    opacity: 0; 
+  }
+}
+
+/* CONFETTI */
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+  animation: confetti-fall 3s linear;
+  z-index: 9999;
+}
+
+@keyframes confetti-fall {
+  to {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
 }
 
 .card {
@@ -83,14 +86,15 @@ body {
   padding: 32px;
   border-radius: 26px;
   width: 90%;
-  max-width: 420px;
+  max-width: 450px;
   text-align: center;
   box-shadow: 0 20px 40px rgba(255,105,180,0.25);
   margin: 50px 0;
   animation: pop 0.8s ease;
+  z-index: 10;
 }
 
-  #screen1 {
+#screen1 {
   overflow: visible;
 }
 
@@ -99,82 +103,76 @@ body {
 h1 {
   font-family: 'Pacifico', cursive;
   font-size: 2.2rem;
+  margin-bottom: 20px;
+  animation: rainbow 3s infinite;
+}
+
+@keyframes rainbow {
+  0%, 100% { color: #ff5fa2; }
+  25% { color: #ff8cc5; }
+  50% { color: #ffb3d9; }
+  75% { color: #ff6b9d; }
 }
 
 .btn {
-  margin: 10px;
-  padding: 12px 22px;
+  margin: 8px;
+  padding: 14px 28px;
   border-radius: 999px;
   border: none;
   font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
 
 .yes {
-  background: #ff5fa2;
+  background: linear-gradient(135deg, #ff5fa2, #ff8cc5);
   color: white;
   animation: pulse 2s infinite;
+}
+
+.yes:hover {
+  background: linear-gradient(135deg, #ff4a91, #ff7ab4);
 }
 
 .no {
   background: #ffd1e6;
   color: #8a004f;
-  position: absolute;
-  left: calc(50% + 60px);
-  transition: transform 0.25s ease;
-}
-
-
-.envelope { font-size: 2.4rem; margin-bottom: 10px; }
-
-.letter {
-  background: #fffdf8;
-  padding: 26px;
-  border-radius: 18px;
-  text-align: left;
-  line-height: 1.7;
-  box-shadow: 0 10px 25px rgba(255,182,193,0.3);
-  white-space: pre-line;
-}
-
-.reason {
-  background: #fff;
-  padding: 14px 18px;
-  border-radius: 16px;
-  margin-bottom: 10px;
-  box-shadow: 0 6px 16px rgba(255,182,193,0.25);
-}
-
-.certificate {
-  border: 2px solid #ffb3d9;
-  padding: 26px;
-  border-radius: 22px;
-  background: #fffdf8;
   position: relative;
+  transition: all 0.15s ease;
 }
 
-.danger-btn {
-  background: #ff6b9d;
-  color: white;
-  padding: 16px 26px;
-  border-radius: 999px;
-  border: none;
-  font-weight: bold;
+.no:hover {
+  background: #ffc0db;
 }
 
-.danger-text { display: none; margin-top: 16px; }
-
-.evil {
-  position: fixed;
-  font-size: 20px;
-  color: rgba(255,0,100,0.5);
-  animation: evil 6s linear infinite;
-}
-
-@keyframes pop { from {transform:scale(0.8);opacity:0;} }
-@keyframes pulse { 70% { box-shadow: 0 0 0 12px rgba(255,95,162,0); } }
-@keyframes evil { to { transform: translateY(-120vh) rotate(360deg); } }
-  
 .btn-row {
   position: relative;
   display: flex;
@@ -182,6 +180,618 @@ h1 {
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+  min-height: 60px;
+}
+
+/* QUIZ SECTION */
+.quiz-container {
+  margin: 25px 0;
+}
+
+.quiz-question {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #8a004f;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.quiz-input {
+  padding: 16px 24px;
+  border-radius: 999px;
+  border: 3px solid #ffb3d9;
+  font-size: 1.15rem;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  width: 100%;
+  max-width: 320px;
+  margin: 20px auto;
+  display: block;
+  background: white;
+  color: #8a004f;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.quiz-input:focus {
+  outline: none;
+  border-color: #ff5fa2;
+  box-shadow: 0 0 25px rgba(255,95,162,0.4);
+  transform: scale(1.03);
+}
+
+.quiz-feedback {
+  margin: 20px 0;
+  padding: 14px 22px;
+  border-radius: 15px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+@keyframes shake-wrong {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-10px); }
+  40%, 80% { transform: translateX(10px); }
+}
+
+.wrong {
+  background: #ffe4e4;
+  color: #d32f2f;
+  border: 2px solid #ff6b6b;
+  animation: shake-wrong 0.6s;
+}
+
+.hint {
+  font-size: 0.95rem;
+  color: #ff5fa2;
+  font-style: italic;
+  margin-top: 12px;
+  animation: pulse-hint 2s infinite;
+}
+
+@keyframes pulse-hint {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* SPIN THE WHEEL */
+.wheel-container {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+.wheel-wrapper {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  margin: 0 auto;
+}
+
+.wheel {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 10px solid #ff5fa2;
+  position: relative;
+  transition: transform 5s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+  box-shadow: 0 15px 50px rgba(255,95,162,0.5);
+  background: white;
+}
+
+.wheel-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #ff5fa2, #ff8cc5);
+  border-radius: 50%;
+  border: 4px solid white;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.wheel-segment {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  top: 0;
+  left: 50%;
+  transform-origin: 0% 100%;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 20px 10px 10px 30px;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.segment-1 { background: #ff6b9d; color: white; transform: rotate(0deg) skewY(-38.57deg); }
+.segment-2 { background: #ffb3d9; color: #8a004f; transform: rotate(51.43deg) skewY(-38.57deg); }
+.segment-3 { background: #ff8cc5; color: white; transform: rotate(102.86deg) skewY(-38.57deg); }
+.segment-4 { background: #ffd1e6; color: #8a004f; transform: rotate(154.29deg) skewY(-38.57deg); }
+.segment-5 { background: #ff5fa2; color: white; transform: rotate(205.71deg) skewY(-38.57deg); }
+.segment-6 { background: #ffe4f1; color: #8a004f; transform: rotate(257.14deg) skewY(-38.57deg); }
+.segment-7 { background: #ff9ec8; color: white; transform: rotate(308.57deg) skewY(-38.57deg); }
+
+.pointer {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 35px solid #ff5fa2;
+  z-index: 15;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+.spin-btn {
+  background: linear-gradient(135deg, #ff5fa2, #ff8cc5);
+  color: white;
+  padding: 18px 40px;
+  border-radius: 999px;
+  border: none;
+  font-size: 1.3rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(255,95,162,0.4);
+  margin-top: 30px;
+  transition: all 0.3s;
+  animation: pulse-spin 2s infinite;
+}
+
+@keyframes pulse-spin {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.spin-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 35px rgba(255,95,162,0.6);
+}
+
+.spin-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  animation: none;
+}
+
+.prize-display {
+  margin-top: 30px;
+  padding: 20px;
+  background: linear-gradient(135deg, #fff5fa, #ffe4f1);
+  border-radius: 20px;
+  border: 3px solid #ff5fa2;
+  display: none;
+  animation: prize-reveal 0.8s ease;
+}
+
+@keyframes prize-reveal {
+  from { 
+    transform: scale(0.8) rotateX(-90deg);
+    opacity: 0;
+  }
+  to { 
+    transform: scale(1) rotateX(0);
+    opacity: 1;
+  }
+}
+
+.prize-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #ff5fa2;
+  margin-bottom: 10px;
+}
+
+.prize-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #8a004f;
+}
+
+/* ANIMATED ENVELOPE */
+.envelope-container {
+  perspective: 1000px;
+  margin: 30px auto;
+  width: 300px;
+  height: 220px;
+  cursor: pointer;
+  position: relative;
+}
+
+.envelope-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
+}
+
+.envelope-wrapper.opened {
+  transform: rotateX(-180deg);
+}
+
+.envelope-back, .envelope-front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+.envelope-back {
+  background: linear-gradient(135deg, #ff5fa2, #ff8cc5);
+  box-shadow: 0 10px 30px rgba(255,95,162,0.5);
+  font-size: 5rem;
+  animation: envelope-wiggle 2s infinite;
+}
+
+@keyframes envelope-wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-5deg); }
+  75% { transform: rotate(5deg); }
+}
+
+.envelope-front {
+  background: linear-gradient(135deg, #fff, #fff5fa);
+  transform: rotateX(180deg);
+  padding: 20px;
+  border: 3px solid #ffb3d9;
+}
+
+.envelope-hint {
+  margin-top: 15px;
+  font-size: 1rem;
+  color: #8a004f;
+  font-weight: 600;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.letter {
+  background: linear-gradient(135deg, #fffdf8, #fff5fa);
+  padding: 30px;
+  border-radius: 18px;
+  text-align: left;
+  line-height: 2;
+  box-shadow: 0 10px 25px rgba(255,182,193,0.3);
+  white-space: pre-line;
+  border: 3px solid #ffe4f1;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.8s ease;
+  margin-top: 20px;
+  position: relative;
+}
+
+.letter::before {
+  content: '💕';
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.5rem;
+  animation: pulse 2s infinite;
+}
+
+.letter.show {
+  max-height: 2000px;
+  opacity: 1;
+}
+
+/* ANIMATED REASONS */
+.reason {
+  background: linear-gradient(135deg, #fff 0%, #fff5fa 100%);
+  padding: 16px 20px;
+  border-radius: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 6px 16px rgba(255,182,193,0.25);
+  border-left: 4px solid #ff5fa2;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateX(-30px);
+  animation: slideIn 0.5s forwards;
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.reason:nth-child(1) { animation-delay: 0.1s; }
+.reason:nth-child(2) { animation-delay: 0.2s; }
+.reason:nth-child(3) { animation-delay: 0.3s; }
+.reason:nth-child(4) { animation-delay: 0.4s; }
+.reason:nth-child(5) { animation-delay: 0.5s; }
+.reason:nth-child(6) { animation-delay: 0.6s; }
+.reason:nth-child(7) { animation-delay: 0.7s; }
+.reason:nth-child(8) { animation-delay: 0.8s; }
+.reason:nth-child(9) { animation-delay: 0.9s; }
+.reason:nth-child(10) { animation-delay: 1s; }
+.reason:nth-child(11) { animation-delay: 1.1s; }
+.reason:nth-child(12) { animation-delay: 1.2s; }
+.reason:nth-child(13) { animation-delay: 1.3s; }
+
+.reason:hover {
+  transform: translateX(10px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(255,182,193,0.4);
+  border-left-width: 6px;
+}
+
+/* CERTIFICATE */
+.certificate {
+  border: 4px solid #ffb3d9;
+  padding: 30px;
+  padding-bottom: 55px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #fffdf8 0%, #fff5fa 100%);
+  position: relative;
+  box-shadow: 0 10px 30px rgba(255,182,193,0.3);
+  animation: certificate-shine 3s infinite;
+}
+
+@keyframes certificate-shine {
+  0%, 100% { box-shadow: 0 10px 30px rgba(255,182,193,0.3); }
+  50% { box-shadow: 0 10px 40px rgba(255,182,193,0.6); }
+}
+
+.cert-title {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.6rem;
+  color: #ff5fa2;
+  margin-bottom: 14px;
+  animation: rainbow 3s infinite;
+}
+
+.cert-text {
+  font-size: 1rem;
+  margin: 10px 0;
+}
+
+.cert-name {
+  font-family: 'Pacifico', cursive;
+  font-size: 2.2rem;
+  color: #8a004f;
+  margin: 20px 0;
+  text-shadow: 2px 2px 4px rgba(255,182,193,0.3);
+  animation: name-glow 2s infinite;
+}
+
+@keyframes name-glow {
+  0%, 100% { text-shadow: 2px 2px 4px rgba(255,182,193,0.3); }
+  50% { text-shadow: 2px 2px 15px rgba(255,95,162,0.6); }
+}
+
+.cert-from {
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin-top: 8px;
+  color: #ff5fa2;
+}
+
+.cert-footer {
+  font-size: 0.95rem;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  opacity: 0.85;
+}
+
+.stamp {
+  position: absolute;
+  right: 20px;
+  bottom: 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ff5fa2;
+  border: 3px solid #ff5fa2;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transform: rotate(-12deg);
+  background: rgba(255,95,162,0.15);
+  animation: stamp-bounce 2s infinite;
+}
+
+@keyframes stamp-bounce {
+  0%, 100% { transform: rotate(-12deg) scale(1); }
+  50% { transform: rotate(-12deg) scale(1.05); }
+}
+
+/* DANGER BUTTON */
+.danger-btn {
+  background: linear-gradient(135deg, #ff0000 0%, #ff5fa2 100%);
+  color: white;
+  padding: 18px 32px;
+  border-radius: 999px;
+  border: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(255,0,0,0.4);
+  transition: all 0.3s ease;
+  animation: shake 0.5s infinite, glow 1.5s infinite;
+  position: relative;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  25% { transform: translateX(-5px) rotate(-2deg); }
+  75% { transform: translateX(5px) rotate(2deg); }
+}
+
+@keyframes glow {
+  0%, 100% { 
+    box-shadow: 0 6px 20px rgba(255,0,0,0.4);
+  }
+  50% { 
+    box-shadow: 0 6px 40px rgba(255,0,0,0.8), 0 0 50px rgba(255,0,0,0.6);
+  }
+}
+
+.danger-btn:hover {
+  transform: scale(1.15);
+  animation: shake 0.2s infinite, glow 1s infinite;
+}
+
+.danger-warning {
+  font-size: 1rem;
+  color: #ff0000;
+  margin: 15px 0;
+  font-weight: 700;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0.2; }
+}
+
+.danger-text { 
+  display: none; 
+  margin-top: 20px;
+  font-size: 1.1rem;
+  line-height: 1.9;
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.danger-text p {
+  margin: 12px 0;
+}
+
+/* QR CODE */
+.qr-container {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  display: inline-block;
+  box-shadow: 0 10px 30px rgba(255,182,193,0.4);
+  margin: 20px 0;
+  border: 4px solid #ffb3d9;
+  animation: qr-pulse 2s infinite;
+}
+
+@keyframes qr-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+.qr-container canvas {
+  display: block !important;
+  border-radius: 12px;
+}
+
+.evil {
+  position: fixed;
+  font-size: 24px;
+  animation: evil 6s linear infinite;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@keyframes pop { 
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse { 
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,95,162,0.7); }
+  50% { box-shadow: 0 0 0 20px rgba(255,95,162,0); }
+}
+
+@keyframes evil { 
+  to { transform: translateY(-120vh) rotate(360deg); }
+}
+
+p { line-height: 1.7; margin: 12px 0; }
+strong { color: #ff5fa2; }
+em { color: #8a004f; font-size: 0.95rem; }
+
+/* COUNTDOWN TIMER */
+.countdown {
+  background: linear-gradient(135deg, #ff5fa2, #ff8cc5);
+  color: white;
+  padding: 25px;
+  border-radius: 20px;
+  margin: 20px 0;
+  box-shadow: 0 10px 25px rgba(255,95,162,0.4);
+  animation: countdown-glow 2s infinite;
+}
+
+@keyframes countdown-glow {
+  0%, 100% { box-shadow: 0 10px 25px rgba(255,95,162,0.4); }
+  50% { box-shadow: 0 10px 35px rgba(255,95,162,0.7); }
+}
+
+.countdown-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.countdown-timer {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.countdown-box {
+  background: rgba(255,255,255,0.25);
+  padding: 15px 20px;
+  border-radius: 16px;
+  min-width: 75px;
+  backdrop-filter: blur(10px);
+  animation: countdown-pop 0.5s ease;
+  transition: transform 0.3s;
+}
+
+.countdown-box:hover {
+  transform: scale(1.1);
+}
+
+@keyframes countdown-pop {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+.countdown-number {
+  font-size: 2rem;
+  font-weight: bold;
+  display: block;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.countdown-label {
+  font-size: 0.85rem;
+  opacity: 0.95;
 }
     
 </style>
@@ -189,88 +799,115 @@ h1 {
 
 <body>
 
+<!-- FLOATING HEARTS -->
+<div id="floatingHearts"></div>
+
 <div class="card" id="screen1">
   <h1>Will you be my Valentine, Punchunu? 💕</h1>
+  <p style="font-size: 1.1rem; margin-bottom: 10px;">Choose wisely... there's only one right answer 😊</p>
 
   <div class="btn-row">
-    <button class="btn yes" onclick="yesClicked()">Yes, of course 💖</button>
-    <button class="btn no" id="noBtn" onclick="noClicked()">No thanks 🙄</button>
+    <button class="btn yes" onclick="yesClicked()">Yes, of course! 💖</button>
+    <button class="btn no" id="noBtn" onmouseenter="tryRunaway()">No thanks 🙄</button>
   </div>
 </div>
 
-  <div class="card hidden" id="screenNo">
+<div class="card hidden" id="screenNo">
   <h1>Excuse me??? 😤</h1>
-  <p id="noMessage">Wrong answer. Try again. Carefully.</p>
-  <button class="btn yes" onclick="goHome()">Okay okay 😅</button>
+  <p id="noMessage" style="font-size: 1.2rem; margin: 20px 0;">Wrong answer. Try again. Carefully.</p>
+  <button class="btn yes" onclick="goHome()">Okay okay, I'll try again 😅</button>
 </div>
-
 
 <div class="card hidden" id="screenYes">
   <h1>YAYYYY 💕</h1>
-  <p>My favourite person said yes.</p>
-  <p><strong>Scroll for cute surprises 💘</strong></p>
-  <button class="btn" onclick="gift1()">💗 Reasons</button>
-  <button class="btn" onclick="gift2()">💌 Letter</button>
-  <button class="btn" onclick="gift3()">🎶 Song</button>
-  <button class="btn" onclick="gift4()">🎓 Certificate</button>
-  <button class="btn" onclick="gift5()">🚫 Do Not Click</button>
-  <button class="btn" onclick="ending()">😈 The End</button>
+  <p style="font-size: 1.2rem;">My favourite person said yes!</p>
+  <p><strong>Scroll down for all the cute surprises I made for you 💘</strong></p>
+  <div style="margin-top: 25px;">
+    <button class="btn" style="background: linear-gradient(135deg, #ff5fa2, #ff8cc5); color: white;" onclick="gift1()">💗 Reasons I Love You</button>
+    <button class="btn" style="background: linear-gradient(135deg, #ff8cc5, #ffb3d9); color: white;" onclick="gift2()">💌 A Letter For You</button>
+    <button class="btn" style="background: linear-gradient(135deg, #ffb3d9, #ffd1e6); color: white;" onclick="gift3()">🎶 Our Song</button>
+    <button class="btn" style="background: linear-gradient(135deg, #a855f7, #c084fc); color: white;" onclick="gift6()">⏰ Countdown</button>
+    <button class="btn" style="background: linear-gradient(135deg, #ffd1e6, #fff); color: #8a004f;" onclick="gift4()">🎓 Official Certificate</button>
+    <button class="btn" style="background: linear-gradient(135deg, #fbbf24, #f59e0b); color: white;" onclick="gift7()">🎁 Bonus Surprise</button>
+    <button class="btn" style="background: linear-gradient(135deg, #ff6b9d, #ff0000); color: white;" onclick="gift5()">🚫 Do Not Click</button>
+    <button class="btn" style="background: linear-gradient(135deg, #8a004f, #5a0036); color: white;" onclick="ending()">😈 The End</button>
+  </div>
 </div>
 
 <div class="card hidden" id="gift1">
   <h1>Reasons I Love You 💗</h1>
-  <div class="reason">You always make me laugh 🤍</div>
-  <div class="reason">You're the one person I can always count on for anything</div>
-  <div class="reason">You're my safe space always</div>
-  <div class="reason">You have the most beautiful eyes</div>
-  <div class="reason">You truly understand me</div>
-  <div class="reason">You tolerate and love my yapping</div>
-  <div class="reason">You make me feel adored and appreciated</div>
-  <div class="reason">You're always doing small gestures that make me feel loved</div>
-  <div class="reason">You make sure we never go to bed angry after a fight</div>
-  <div class="reason">You match my love languages</div>
-  <div class="reason">You're absolutely perfect</div>
-  <div class="reason">You're so smart and hardworking</div>
-  <div class="reason">You're insanely attractive</div>
-  <p><em>this and a million more reasons</em></p>
-  <button class="btn" onclick="goYes()">⬅ Back</button>
+  <div class="reason">💫 You always make me laugh</div>
+  <div class="reason">🤝 You're the one person I can always count on for anything</div>
+  <div class="reason">🏡 You're my safe space always</div>
+  <div class="reason">👀 You have the most beautiful eyes</div>
+  <div class="reason">💭 You truly understand me</div>
+  <div class="reason">🗣️ You tolerate and love my yapping</div>
+  <div class="reason">💖 You make me feel adored and appreciated</div>
+  <div class="reason">✨ You're always doing small gestures that make me feel loved</div>
+  <div class="reason">🌙 You make sure we never go to bed angry after a fight</div>
+  <div class="reason">💕 You match my love languages</div>
+  <div class="reason">🌟 You're absolutely perfect</div>
+  <div class="reason">🧠 You're so smart and hardworking</div>
+  <div class="reason">😍 You're insanely attractive</div>
+  <p style="margin-top: 25px; font-size: 1.1rem;"><em>...and a million more reasons ✨</em></p>
+  <button class="btn yes" onclick="goYes()">⬅ Back to Menu</button>
 </div>
 
 <div class="card hidden" id="gift2">
-  <h1>A letter for you 💌</h1>
-  <div class="envelope">💌</div>
-  <div class="letter">
-Dear Punchunu, 
-    
-You are my forever and my always, and there is no one in this world who means more to me than you. You are my favourite person and the only one I want to talk to when I'm happy or sad or excited. You're the one I love talking to the most, laughing with and sharing everything with. 
+  <h1>A Letter For You 💌</h1>
   
-I can’t believe we’re almost touching our 3 year anniversary. My favourite thing to do is replay memories of us and I can't wait to make so many more new memories with you. You are everything to me darling boy.
+  <div class="envelope-container" onclick="openEnvelope()">
+    <div class="envelope-wrapper" id="envelopeWrapper">
+      <div class="envelope-back">💌</div>
+      <div class="envelope-front">
+        <p style="color: #8a004f; font-size: 1rem; font-weight: 600;">✨ Click to read ✨</p>
+      </div>
+    </div>
+  </div>
+  <p class="envelope-hint" id="envelopeHint">👆 Tap the envelope to open! 👆</p>
+  
+  <div class="letter" id="letterContent">
+My Dearest Punchunu,
 
-With all my love,
+You are my forever and always, the person who makes my world brighter just by existing. There's no one in this entire world who means more to me than you do. You're not just my favourite person; you're my only person when it comes to sharing my happiness, sadness and everything in between.
+
+You're the only one who truly gets me and I still can't believe we're touching 3 years together. My favourite thing in the world is replaying our memories - our first kiss, your smile, conversations we had and the way you look at me. I can't wait to make more memories with you.
+
+You are my everything, darling boy. My safe place, my best friend, my soulmate.
+
+Forever and always yours,
 Your Nehu 💗
   </div>
-  <button class="btn" onclick="goYes()">⬅ Back</button>
+  
+  <button class="btn yes" onclick="goYes()" style="margin-top: 25px;">⬅ Back to Menu</button>
 </div>
 
 <div class="card hidden" id="gift3">
-  <h1>This song is for you 🎶</h1>
-  <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://music.apple.com/ug/song/those-eyes/1663074502">
-  <button class="btn" onclick="goYes()">⬅ Back</button>
+  <h1>This Song Is For You 🎶</h1>
+  <p style="font-size: 1.2rem; margin: 20px 0;">Scan this to hear our song 💕</p>
+  
+  <div class="qr-container">
+    <div id="qrcode"></div>
+  </div>
+  
+  <p style="margin-top: 20px; font-size: 1.2rem;"><strong>"Those Eyes"</strong> by New West</p>
+  <p style="margin-top: 10px; font-size: 1.05rem;"><em>This song reminds me of you every single time 💫</em></p>
+  <button class="btn yes" onclick="goYes()" style="margin-top: 25px;">⬅ Back to Menu</button>
 </div>
 
 <div class="card hidden" id="gift4">
-  <h1>Official Certificate 💗</h1>
+  <h1>Official Certificate 🎓</h1>
 
   <div class="certificate">
     <div class="cert-title">💗 Valentine Certification 💗</div>
 
-    <p class="cert-text">This certifies that</p>
+    <p class="cert-text">This officially certifies that</p>
 
     <div class="cert-name">Punchunu</div>
 
     <p class="cert-text">
       is officially<br>
-      <strong>CLAIMED • LOVED • ADORED</strong><br>
+      <strong style="font-size: 1.3rem;">CLAIMED • LOVED • ADORED</strong><br>
       by
     </p>
 
@@ -278,119 +915,465 @@ Your Nehu 💗
 
     <div class="cert-footer">
       <span>Valid until: <strong>Forever ♾️</strong></span><br>
-      <span>Renewal: Automatic</span>
+      <span>Renewal: <strong>Automatic & Non-Negotiable</strong></span><br>
+      <span style="font-size: 0.85rem; margin-top: 8px; display: block;">No returns. No exchanges. No escaping.</span>
     </div>
 
     <div class="stamp">✔ APPROVED</div>
   </div>
 
-  <button class="btn" onclick="goYes()">⬅ Back</button>
+  <button class="btn yes" onclick="goYes()" style="margin-top: 25px;">⬅ Back to Menu</button>
+</div>
+
+<div class="card hidden" id="gift6">
+  <h1>Countdown to Valentine's Day ⏰</h1>
+  <p style="font-size: 1.1rem; margin: 20px 0;">nehu and punchunu day! 💕</p>
+  
+  <div class="countdown">
+    <div class="countdown-title">⏰ Days Until February 14th ⏰</div>
+    <div class="countdown-timer">
+      <div class="countdown-box">
+        <span class="countdown-number" id="days">00</span>
+        <span class="countdown-label">Days</span>
+      </div>
+      <div class="countdown-box">
+        <span class="countdown-number" id="hours">00</span>
+        <span class="countdown-label">Hours</span>
+      </div>
+      <div class="countdown-box">
+        <span class="countdown-number" id="minutes">00</span>
+        <span class="countdown-label">Minutes</span>
+      </div>
+      <div class="countdown-box">
+        <span class="countdown-number" id="seconds">00</span>
+        <span class="countdown-label">Seconds</span>
+      </div>
+    </div>
+  </div>
+  
+  <p style="margin-top: 25px; font-size: 1.1rem;"><em>Can't wait to spend it with you! 💖</em></p>
+  <button class="btn yes" onclick="goYes()">⬅ Back to Menu</button>
+</div>
+
+<!-- QUIZ SECTION -->
+<div class="card hidden" id="gift7">
+  <h1>🎁 Bonus Surprise! 🎁</h1>
+  <p style="font-size: 1.1rem; margin: 20px 0;">But first... you need to prove you know me 😏</p>
+  
+  <div class="quiz-container">
+    <p class="quiz-question">What was my first nickname for you? 💕</p>
+    <input type="text" class="quiz-input" id="quizAnswer" placeholder="Type your answer...">
+    <div id="quizFeedback"></div>
+    <p class="hint">Hint: jk, no hints for you hehe 😊</p>
+    <button class="btn yes" onclick="checkAnswer()" style="margin-top: 15px;">Submit Answer 🎯</button>
+  </div>
+  
+  <button class="btn" style="background: #ffd1e6; color: #8a004f; margin-top: 20px;" onclick="goYes()">⬅ Back to Menu</button>
+</div>
+
+<!-- SPIN THE WHEEL -->
+<div class="card hidden" id="wheelScreen">
+  <h1>🎉 Ding.. ding.. ding.. 🎉</h1>
+  <p style="font-size: 1.3rem; margin: 20px 0; font-weight: 600; color: #ff5fa2;">Correct answer!</p>
+  <p style="font-size: 1.15rem; margin-bottom: 10px;">Spin the wheel to see what you won! 🎁</p>
+  
+  <div class="wheel-container">
+    <div class="pointer"></div>
+    <div class="wheel-wrapper">
+      <div class="wheel" id="wheel">
+        <div class="wheel-segment segment-1">Dinner on me 🍽️</div>
+        <div class="wheel-segment segment-2">Lunch on me 🥗</div>
+        <div class="wheel-segment segment-3">Rs 100 💰</div>
+        <div class="wheel-segment segment-4">A naughty picture 😏</div>
+        <div class="wheel-segment segment-5">Movie night 🎬</div>
+        <div class="wheel-segment segment-6">Game night 🎮</div>
+        <div class="wheel-segment segment-7">Better luck next time loser 😂</div>
+        <div class="wheel-center">💕</div>
+      </div>
+    </div>
+  </div>
+  
+  <button class="spin-btn" id="spinBtn" onclick="spinWheel()">SPIN THE WHEEL! 🎡</button>
+  
+  <div class="prize-display" id="prizeDisplay">
+    <p class="prize-title">🎊 YOU WON 🎊</p>
+    <p class="prize-text" id="prizeText"></p>
+  </div>
+  
+  <button class="btn yes" onclick="goYes()" style="margin-top: 25px;">⬅ Back to Menu</button>
 </div>
 
 <div class="card hidden" id="gift5"> 
-  <h1>DO NOT CLICK 🚫</h1> 
-  <button class="danger-btn" onclick="danger()">DO NOT CLICK</button>
+  <h1>⚠️ DANGER ZONE ⚠️</h1>
+  <p class="danger-warning">⚠️ SERIOUSLY, DO NOT CLICK THIS BUTTON ⚠️</p>
+  <p style="font-size: 1.05rem; color: #ff0000; margin: 15px 0; font-weight: 600;">This button is cursed. Bad things will happen. I warned you... 😏</p>
+  <button class="danger-btn" onclick="danger()">🚫 DO NOT CLICK 🚫</button>
   <div class="danger-text" id="dangerText"> 
-    <p>You literally never listen to me 🙄</p> <p>Anyway…</p> 
+    <p style="font-size: 1.4rem; color: #ff0000;">🙄 YOU CLICKED IT 🙄</p>
+    <p style="font-size: 1.1rem;">You literally NEVER listen to me!</p>
+    <p>I SPECIFICALLY told you not to...</p> 
     <p>Well well well 😏</p> 
-    <p>Now you owe me unlimited hugs, kisses, and the cutest Valentine’s Day.</p> 
-  </div> <button class="btn" onclick="goYes()">⬅ Back</button> 
+    <p><strong style="font-size: 1.3rem; color: #ff5fa2;">Now you owe me:</strong></p>
+    <p style="font-size: 1.05rem;">✓ Unlimited hugs for life<br>✓ Unlimited kisses forever<br>✓ The CUTEST Valentine's Day ever<br>✓ All the cuddles in the world<br>✓ Your undivided attention always<br>✓ Random surprise dates<br>✓ Princess Treatment</p>
+    <p style="font-size: 1.3rem; margin-top: 20px; color: #ff5fa2;"><strong>No refunds! No complaints! No escape! 💕</strong></p>
+  </div> 
+  <button class="btn yes" onclick="goYes()" style="margin-top: 25px;">⬅ Back to Menu</button> 
 </div>
 
+<div class="card hidden" id="ending">
+  <h1>You're Stuck With Me HAHAHA 😈</h1>
+  <p style="font-size: 1.3rem; margin: 20px 0;">No take backs. No refunds. No escaping. EVER.</p>
+  <p style="font-size: 1.15rem;">I hope you're ready for a <strong>shit ton</strong> of love, chaos, bullying, cuddles, random calls, endless yapping, and me being absolutely obsessed with you.</p>
+  <p style="font-size: 2.5rem; margin: 25px 0;">💕✨🎉😈</p>
+  <p style="font-size: 1.15rem;"><em>Consider this your early Valentine's surprise, darling! 💗</em></p>
+  <p style="margin-top: 20px; font-size: 1.1rem;"><em>Get ready for Feb 14th...you better plan something crazy 😊</em></p>
+  <p style="margin-top: 25px; font-size: 1.3rem; color: #ff5fa2;"><strong>I love you, Punchunu 💕</strong></p>
+</div>
+
+<!-- QR Code Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
 <script>
-/* sparkles */
+// CREATE FLOATING HEARTS
+function createFloatingHearts() {
+  const hearts = ['💕', '💖', '💗', '💝', '💓', '💞'];
+  const container = document.getElementById('floatingHearts');
+  
+  setInterval(() => {
+    const heart = document.createElement('div');
+    heart.className = 'floating-heart';
+    heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+    heart.style.animationDuration = (Math.random() * 4 + 6) + 's';
+    heart.style.animationDelay = Math.random() * 2 + 's';
+    container.appendChild(heart);
+    
+    setTimeout(() => heart.remove(), 12000);
+  }, 800);
+}
+
+createFloatingHearts();
+
+/* Enhanced sparkle cursor trail */
 document.addEventListener("mousemove", e => {
-  const s = document.createElement("div");
-  s.className = "sparkle";
-  s.innerHTML = "✨";
-  s.style.left = e.clientX + "px";
-  s.style.top = e.clientY + "px";
-  document.body.appendChild(s);
-  setTimeout(()=>s.remove(),1000);
+  if (Math.random() > 0.7) {
+    const s = document.createElement("div");
+    s.className = "sparkle";
+    s.innerHTML = ["✨", "💕", "💖", "💗", "🌟", "⭐"][Math.floor(Math.random() * 6)];
+    s.style.left = e.clientX + "px";
+    s.style.top = e.clientY + "px";
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 1200);
+  }
 });
 
-/* navigation */
-function hideAll(){ document.querySelectorAll('.card').forEach(c=>c.classList.add('hidden')); }
-function yesClicked(){ hideAll(); document.getElementById('screenYes').classList.remove('hidden'); }
-function goYes(){ hideAll(); document.getElementById('screenYes').classList.remove('hidden'); }
-function gift1(){ hideAll(); document.getElementById('gift1').classList.remove('hidden'); }
-function gift2(){ hideAll(); document.getElementById('gift2').classList.remove('hidden'); }
-function gift3(){ hideAll(); document.getElementById('gift3').classList.remove('hidden'); }
-function gift4(){ hideAll(); document.getElementById('gift4').classList.remove('hidden'); }
-function gift5(){ hideAll(); document.getElementById('gift5').classList.remove('hidden'); }
+/* Navigation functions */
+function hideAll() { 
+  document.querySelectorAll('.card').forEach(c => c.classList.add('hidden')); 
+}
 
-// NO BUTTON LOGIC (STEP 5)
-let runawayEnabled = true; // allow runaway immediately
-let noCount = 0;
+function yesClicked() { 
+  hideAll(); 
+  document.getElementById('screenYes').classList.remove('hidden');
+  createConfetti();
+}
 
-const noResponses = [
-  "Hello?? 🤨",
-  "So you hate me? 🤨",
-  "Try again 😒",
-  "The audacity 😤",
-  "I am judging you 👀",
-  "Wrong choice bestie 😠",
-  "Okay now you're just being mean 😈"
+function goYes() { 
+  hideAll(); 
+  document.getElementById('screenYes').classList.remove('hidden'); 
+}
+
+function gift1() { 
+  hideAll(); 
+  document.getElementById('gift1').classList.remove('hidden'); 
+}
+
+function gift2() { 
+  hideAll(); 
+  document.getElementById('gift2').classList.remove('hidden');
+  document.getElementById('envelopeWrapper').classList.remove('opened');
+  document.getElementById('letterContent').classList.remove('show');
+  document.getElementById('envelopeHint').style.display = 'block';
+}
+
+function gift3() { 
+  hideAll(); 
+  document.getElementById('gift3').classList.remove('hidden');
+  generateQRCode();
+}
+
+function gift4() { 
+  hideAll(); 
+  document.getElementById('gift4').classList.remove('hidden'); 
+}
+
+function gift5() { 
+  hideAll(); 
+  document.getElementById('gift5').classList.remove('hidden'); 
+}
+
+function gift6() {
+  hideAll();
+  document.getElementById('gift6').classList.remove('hidden');
+  updateCountdown();
+}
+
+function gift7() {
+  hideAll();
+  document.getElementById('gift7').classList.remove('hidden');
+  document.getElementById('quizAnswer').value = '';
+  document.getElementById('quizFeedback').innerHTML = '';
+}
+
+/* QUIZ FUNCTIONALITY */
+let attempts = 0;
+function checkAnswer() {
+  const answer = document.getElementById('quizAnswer').value.trim();
+  const feedback = document.getElementById('quizFeedback');
+  
+  if (answer.toLowerCase() === 'kachoo') {
+    feedback.innerHTML = '<div style="background: #d4edda; color: #155724; padding: 14px 22px; border-radius: 15px; font-weight: 600; font-size: 1.1rem; border: 2px solid #28a745; animation: fadeIn 0.5s;">🎉 Correct! Unlocking your surprise... 🎁</div>';
+    createConfetti();
+    setTimeout(() => {
+      hideAll();
+      document.getElementById('wheelScreen').classList.remove('hidden');
+    }, 1500);
+  } else {
+    attempts++;
+    let message = '❌ Wrong answer! Try again!';
+    if (attempts === 2) message = '❌ Still wrong! Come on, you know this!';
+    if (attempts >= 3) message = '❌ Really?? It rhymes with "achoo"! 😅';
+    feedback.innerHTML = `<div class="quiz-feedback wrong">${message}</div>`;
+  }
+}
+
+// Allow Enter key to submit
+document.getElementById('quizAnswer').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') checkAnswer();
+});
+
+/* SPIN THE WHEEL FUNCTIONALITY */
+let hasSpun = false;
+const prizes = [
+  "Dinner on me! 🍽️",
+  "Lunch on me! 🥗", 
+  "Rs 100! 💰",
+  "A naughty picture! 😏",
+  "Movie night! 🎬",
+  "Game night! 🎮",
+  "Better luck next time loser! 😂"
 ];
 
-function noClicked() {
+function spinWheel() {
+  if (hasSpun) return;
+  hasSpun = true;
+  
+  const btn = document.getElementById('spinBtn');
+  btn.disabled = true;
+  btn.style.opacity = '0.5';
+  
+  const wheel = document.getElementById('wheel');
+  const prizeDisplay = document.getElementById('prizeDisplay');
+  const prizeText = document.getElementById('prizeText');
+  
+  // Random spins between 5-8 full rotations plus random segment
+  const randomSpin = Math.floor(Math.random() * 3 + 5) * 360;
+  const segmentAngle = 360 / 7;
+  const randomSegment = Math.floor(Math.random() * 7);
+  const finalRotation = randomSpin + (randomSegment * segmentAngle);
+  
+  wheel.style.transform = `rotate(${finalRotation}deg)`;
+  
+  // Show result after animation
+  setTimeout(() => {
+    const prizeIndex = (7 - randomSegment) % 7;
+    prizeText.textContent = prizes[prizeIndex];
+    prizeDisplay.style.display = 'block';
+    createConfetti();
+    
+    // Allow spinning again after 3 seconds
+    setTimeout(() => {
+      hasSpun = false;
+      btn.disabled = false;
+      btn.style.opacity = '1';
+      wheel.style.transition = 'none';
+      wheel.style.transform = 'rotate(0deg)';
+      setTimeout(() => {
+        wheel.style.transition = 'transform 5s cubic-bezier(0.17, 0.67, 0.12, 0.99)';
+      }, 50);
+    }, 3000);
+  }, 5000);
+}
+
+/* Generate QR Code */
+let qrGenerated = false;
+function generateQRCode() {
+  if (!qrGenerated) {
+    const qrContainer = document.getElementById('qrcode');
+    qrContainer.innerHTML = '';
+    new QRCode(qrContainer, {
+      text: "https://music.apple.com/ug/song/those-eyes/1663074502",
+      width: 200,
+      height: 200,
+      colorDark: "#8a004f",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+    qrGenerated = true;
+  }
+}
+
+/* Confetti explosion */
+function createConfetti() {
+  const colors = ['#ff5fa2', '#ff8cc5', '#ffb3d9', '#ffd1e6', '#ffe4f1'];
+  for(let i = 0; i < 100; i++) {
+    const confetti = document.createElement('div');
+    confetti.className = 'confetti';
+    confetti.style.left = Math.random() * 100 + 'vw';
+    confetti.style.top = '-10px';
+    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+    confetti.style.animationDelay = (Math.random() * 0.5) + 's';
+    document.body.appendChild(confetti);
+    setTimeout(() => confetti.remove(), 5000);
+  }
+}
+
+/* Envelope animation */
+function openEnvelope() {
+  const wrapper = document.getElementById('envelopeWrapper');
+  const letter = document.getElementById('letterContent');
+  const hint = document.getElementById('envelopeHint');
+  
+  wrapper.classList.add('opened');
+  hint.style.display = 'none';
+  
+  setTimeout(() => {
+    letter.classList.add('show');
+  }, 800);
+}
+
+/* "No" button behavior */
+let noCount = 0;
+let isRunning = false;
+
+const noResponses = [
+  "Think again 🤨",
+  "Really? 😒",
+  "Wrong answer 😤",
+  "Try harder 👀",
+  "Still wrong 😠",
+  "Nope! 😈",
+  "Getting closer... NOT 😏",
+  "Nice try 🙅‍♀️"
+];
+
+function tryRunaway() {
+  if (isRunning) return;
+  isRunning = true;
+  
   const btn = document.getElementById("noBtn");
+  const maxX = 250;
+  const maxY = 120;
+  const x = (Math.random() - 0.5) * maxX;
+  const y = (Math.random() - 0.5) * maxY;
+  
+  btn.style.transform = `translate(${x}px, ${y}px)`;
+  
+  if (noCount < noResponses.length) {
+    btn.innerText = noResponses[noCount];
+    noCount++;
+  }
+  
+  setTimeout(() => {
+    isRunning = false;
+  }, 150);
+}
+
+document.getElementById("noBtn").addEventListener("click", function() {
   const msg = document.getElementById("noMessage");
-
-  const text = noResponses[Math.min(noCount, noResponses.length - 1)];
-  btn.innerText = text;
-  msg.innerText = text;
-
-  noCount++;
-  runawayEnabled = true; // ✅ only after click
-
+  msg.innerText = this.innerText;
   hideAll();
   document.getElementById("screenNo").classList.remove("hidden");
-}
+});
 
 function goHome() {
   hideAll();
   document.getElementById("screen1").classList.remove("hidden");
+  document.getElementById("noBtn").style.transform = "translate(0, 0)";
+  noCount = 0;
 }
 
-const noBtn = document.getElementById("noBtn");
-
-noBtn.addEventListener("mouseover", () => {
-  if (!runawayEnabled) return;
-
-  const x = Math.random() * 320 - 160;
-  const y = Math.random() * 220 - 110;
-  noBtn.style.transform = `translate(${x}px, ${y}px)`;
-});
-
-
-/* danger */
-function danger(){ document.getElementById('dangerText').style.display="block"; }
-
-/* ending */
-function ending(){
-  hideAll();
-  document.getElementById('ending').classList.remove('hidden');
-  for(let i=0;i<25;i++){
-    const e=document.createElement("div");
-    e.className="evil";
-    e.innerHTML="😈";
-    e.style.left=Math.random()*100+"vw";
-    e.style.bottom="-20px";
-    document.body.appendChild(e);
-    setTimeout(()=>e.remove(),6000);
+/* Danger button */
+function danger() { 
+  const dangerText = document.getElementById('dangerText');
+  dangerText.style.display = "block";
+  
+  for(let i = 0; i < 30; i++) {
+    const emoji = document.createElement("div");
+    emoji.className = "evil";
+    emoji.innerHTML = ["💥", "⚠️", "🚫", "😱", "💕", "😈"][Math.floor(Math.random() * 6)];
+    emoji.style.left = Math.random() * 100 + "vw";
+    emoji.style.bottom = "-20px";
+    emoji.style.fontSize = (Math.random() * 20 + 18) + "px";
+    emoji.style.animationDuration = (Math.random() * 3 + 4) + "s";
+    document.body.appendChild(emoji);
+    setTimeout(() => emoji.remove(), 7000);
   }
 }
 
-</script>
+/* Countdown timer */
+let countdownInterval;
+function updateCountdown() {
+  if (countdownInterval) clearInterval(countdownInterval);
   
-<div class="card hidden" id="ending">
-  <h1>You’re stuck with me 😈</h1>
-  <p>No take backs. No refunds.</p>
-  <p>I hope you’re ready for a shit ton of love, chaos, and me.</p>
-</div>
+  const valentines = new Date('2026-02-14T00:00:00').getTime();
+  
+  countdownInterval = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = valentines - now;
+    
+    if (distance < 0) {
+      clearInterval(countdownInterval);
+      document.getElementById('days').innerHTML = '00';
+      document.getElementById('hours').innerHTML = '00';
+      document.getElementById('minutes').innerHTML = '00';
+      document.getElementById('seconds').innerHTML = '00';
+      return;
+    }
+    
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    document.getElementById('days').innerHTML = String(days).padStart(2, '0');
+    document.getElementById('hours').innerHTML = String(hours).padStart(2, '0');
+    document.getElementById('minutes').innerHTML = String(minutes).padStart(2, '0');
+    document.getElementById('seconds').innerHTML = String(seconds).padStart(2, '0');
+  }, 1000);
+}
+
+/* Ending */
+function ending() {
+  hideAll();
+  document.getElementById('ending').classList.remove('hidden');
+  
+  for(let i = 0; i < 50; i++) {
+    const e = document.createElement("div");
+    e.className = "evil";
+    e.innerHTML = ["😈", "💕", "💖", "😍", "🔥", "✨", "💗", "💓"][Math.floor(Math.random() * 8)];
+    e.style.left = Math.random() * 100 + "vw";
+    e.style.bottom = "-20px";
+    e.style.animationDelay = (Math.random() * 2) + "s";
+    e.style.fontSize = (Math.random() * 18 + 20) + "px";
+    e.style.animationDuration = (Math.random() * 3 + 5) + "s";
+    document.body.appendChild(e);
+    setTimeout(() => e.remove(), 10000);
+  }
+}
+</script>
 
 </body>
 </html>
-
-
