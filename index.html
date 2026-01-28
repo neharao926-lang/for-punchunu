@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Be My Valentine 💖</title>
+<title>💕 Special Access Required 💕</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -92,6 +92,162 @@ body {
   margin: 50px 0;
   animation: pop 0.8s ease;
   z-index: 10;
+}
+
+/* IDENTITY SCREEN ANIMATIONS */
+.lock-icon {
+  font-size: 5rem;
+  animation: lock-shake 2s infinite;
+  display: inline-block;
+}
+
+@keyframes lock-shake {
+  0%, 100% { transform: rotate(0deg); }
+  10%, 30%, 50%, 70%, 90% { transform: rotate(-10deg); }
+  20%, 40%, 60%, 80% { transform: rotate(10deg); }
+}
+
+.identity-btn {
+  margin: 15px 10px;
+  padding: 18px 35px;
+  border-radius: 999px;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.identity-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.identity-btn:hover::before {
+  width: 400px;
+  height: 400px;
+}
+
+.identity-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+.btn-punchunu {
+  background: linear-gradient(135deg, #ff5fa2, #ff8cc5);
+  color: white;
+  animation: pulse-glow 2s infinite;
+  font-size: 1.4rem;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 6px 20px rgba(255,95,162,0.4);
+  }
+  50% { 
+    box-shadow: 0 6px 40px rgba(255,95,162,0.8), 0 0 50px rgba(255,95,162,0.5);
+  }
+}
+
+.btn-someone-else {
+  background: linear-gradient(135deg, #ffd1e6, #ffe4f1);
+  color: #8a004f;
+}
+
+/* ACCESS DENIED SCREEN */
+.access-denied {
+  font-size: 3rem;
+  color: #ff0000;
+  animation: denied-flash 0.5s 3;
+  margin: 20px 0;
+}
+
+@keyframes denied-flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* MINI GAME - CATCH THE HEARTS */
+.game-container {
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  height: 400px;
+  background: linear-gradient(135deg, #fff5fa, #ffe4f1);
+  border-radius: 20px;
+  margin: 25px auto;
+  overflow: hidden;
+  border: 3px solid #ffb3d9;
+}
+
+.game-basket {
+  position: absolute;
+  bottom: 10px;
+  width: 80px;
+  height: 80px;
+  font-size: 3.5rem;
+  transition: left 0.1s;
+  cursor: pointer;
+  user-select: none;
+  z-index: 5;
+}
+
+.falling-heart {
+  position: absolute;
+  font-size: 2rem;
+  animation: fall 3s linear;
+  cursor: pointer;
+  user-select: none;
+}
+
+@keyframes fall {
+  to { top: 100%; }
+}
+
+.game-score {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.9);
+  padding: 10px 25px;
+  border-radius: 999px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #ff5fa2;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+/* DRAMATIC REVEAL ANIMATION */
+@keyframes dramatic-zoom {
+  0% { 
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% { 
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.dramatic-reveal {
+  animation: dramatic-zoom 1.5s ease-out;
 }
 
 #screen1 {
@@ -258,15 +414,15 @@ h1 {
 .wheel-container {
   position: relative;
   width: 100%;
-  max-width: 380px;
+  max-width: 400px;
   margin: 30px auto;
   padding: 20px;
 }
 
 .wheel-wrapper {
   position: relative;
-  width: 320px;
-  height: 320px;
+  width: 350px;
+  height: 350px;
   margin: 0 auto;
 }
 
@@ -274,11 +430,12 @@ h1 {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 10px solid #ff5fa2;
+  border: 12px solid #ff5fa2;
   position: relative;
   transition: transform 5s cubic-bezier(0.17, 0.67, 0.12, 0.99);
   box-shadow: 0 15px 50px rgba(255,95,162,0.5);
   background: white;
+  overflow: hidden;
 }
 
 .wheel-center {
@@ -286,44 +443,83 @@ h1 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   background: linear-gradient(135deg, #ff5fa2, #ff8cc5);
   border-radius: 50%;
-  border: 4px solid white;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  border: 5px solid white;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
 
 .wheel-segment {
   position: absolute;
   width: 50%;
   height: 50%;
-  top: 0;
-  left: 50%;
-  transform-origin: 0% 100%;
-  clip-path: polygon(0 0, 100% 0, 0 100%);
+  transform-origin: 100% 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
-  font-weight: 600;
-  padding: 20px 10px 10px 30px;
-  text-align: center;
-  line-height: 1.3;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 25px 15px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: right;
+  line-height: 1.2;
+  border: 2px solid white;
 }
 
-.segment-1 { background: #ff6b9d; color: white; transform: rotate(0deg) skewY(-38.57deg); }
-.segment-2 { background: #ffb3d9; color: #8a004f; transform: rotate(51.43deg) skewY(-38.57deg); }
-.segment-3 { background: #ff8cc5; color: white; transform: rotate(102.86deg) skewY(-38.57deg); }
-.segment-4 { background: #ffd1e6; color: #8a004f; transform: rotate(154.29deg) skewY(-38.57deg); }
-.segment-5 { background: #ff5fa2; color: white; transform: rotate(205.71deg) skewY(-38.57deg); }
-.segment-6 { background: #ffe4f1; color: #8a004f; transform: rotate(257.14deg) skewY(-38.57deg); }
-.segment-7 { background: #ff9ec8; color: white; transform: rotate(308.57deg) skewY(-38.57deg); }
+.segment-1 { 
+  background: #ff6b9d; 
+  color: white; 
+  transform: rotate(0deg) skewY(-38.57deg);
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+.segment-2 { 
+  background: #ffb3d9; 
+  color: #5a0036; 
+  transform: rotate(51.43deg) skewY(-38.57deg);
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+.segment-3 { 
+  background: #ff8cc5; 
+  color: white; 
+  transform: rotate(102.86deg) skewY(-38.57deg);
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+.segment-4 { 
+  background: #ffd1e6; 
+  color: #5a0036; 
+  transform: rotate(154.29deg) skewY(-38.57deg);
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+.segment-5 { 
+  background: #ff5fa2; 
+  color: white; 
+  transform: rotate(205.71deg) skewY(-38.57deg);
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+.segment-6 { 
+  background: #ffe4f1; 
+  color: #5a0036; 
+  transform: rotate(257.14deg) skewY(-38.57deg);
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+.segment-7 { 
+  background: #ff9ec8; 
+  color: white; 
+  transform: rotate(308.57deg) skewY(-38.57deg);
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
 
 .pointer {
   position: absolute;
@@ -802,7 +998,45 @@ em { color: #8a004f; font-size: 0.95rem; }
 <!-- FLOATING HEARTS -->
 <div id="floatingHearts"></div>
 
-<div class="card" id="screen1">
+<!-- IDENTITY VERIFICATION SCREEN -->
+<div class="card" id="identityScreen">
+  <div class="lock-icon">🔐</div>
+  <h1 style="font-size: 2.5rem; margin-top: 20px;">Identity Verification</h1>
+  <p style="font-size: 1.15rem; margin: 25px 0; line-height: 1.8; color: #8a004f;">
+    This is a <strong style="font-size: 1.3rem;">highly exclusive</strong> website.<br>
+    Please confirm your identity to proceed.
+  </p>
+  
+  <div style="margin: 35px 0;">
+    <p style="font-size: 1.35rem; font-weight: 700; color: #ff5fa2; margin-bottom: 30px;">Are you...</p>
+    <button class="identity-btn btn-punchunu" onclick="verifyPunchunu()">
+      Punchunu 💕
+    </button>
+    <br>
+    <button class="identity-btn btn-someone-else" onclick="verifySomeoneElse()">
+      Someone Else 🤔
+    </button>
+  </div>
+</div>
+
+<!-- ACCESS DENIED SCREEN -->
+<div class="card hidden" id="accessDeniedScreen">
+  <div class="access-denied">❌ ACCESS DENIED ❌</div>
+  <h1 style="font-size: 2rem;">Oops! This isn't for you... 😅</h1>
+  <p style="font-size: 1.1rem; margin: 20px 0;">But here's a cute game anyway! 💕</p>
+  
+  <div class="game-container" id="gameContainer">
+    <div class="game-score">Score: <span id="score">0</span></div>
+    <div class="game-basket" id="basket">🧺</div>
+  </div>
+  
+  <p style="font-size: 0.95rem; color: #8a004f; margin-top: 20px;">
+    <strong>How to play:</strong> Move your mouse (or finger) to catch the falling hearts! 💕
+  </p>
+</div>
+
+<!-- MAIN VALENTINE SCREEN -->
+<div class="card hidden dramatic-reveal" id="screen1">
   <h1>Will you be my Valentine, Punchunu? 💕</h1>
   <p style="font-size: 1.1rem; margin-bottom: 10px;">Choose wisely... there's only one right answer 😊</p>
 
@@ -820,7 +1054,7 @@ em { color: #8a004f; font-size: 0.95rem; }
 
 <div class="card hidden" id="screenYes">
   <h1>YAYYYY 💕</h1>
-  <p style="font-size: 1.2rem;">My favourite person said yes!</p>
+  <p style="font-size: 1.2rem;">You're my Valentine!</p>
   <p><strong>Scroll down for all the cute surprises I made for you 💘</strong></p>
   <div style="margin-top: 25px;">
     <button class="btn" style="background: linear-gradient(135deg, #ff5fa2, #ff8cc5); color: white;" onclick="gift1()">💗 Reasons I Love You</button>
@@ -871,7 +1105,7 @@ My Dearest Punchunu,
 
 You are my forever and always, the person who makes my world brighter just by existing. There's no one in this entire world who means more to me than you do. You're not just my favourite person; you're my only person when it comes to sharing my happiness, sadness and everything in between.
 
-You're the only one who truly gets me and I still can't believe we're touching 3 years together. My favourite thing in the world is replaying our memories - our first kiss, your smile, conversations we had and the way you look at me. I can't wait to make more memories with you.
+You're the only one who truly gets me and I still can't believe we're touching 3 years together. My favourite thing to do is replaying memories of us like - our first kiss, your smile, conversations we had and the way you look at me. I can't wait to make more memories with you.
 
 You are my everything, darling boy. My safe place, my best friend, my soulmate.
 
@@ -927,7 +1161,7 @@ Your Nehu 💗
 
 <div class="card hidden" id="gift6">
   <h1>Countdown to Valentine's Day ⏰</h1>
-  <p style="font-size: 1.1rem; margin: 20px 0;">nehu and punchunu day! 💕</p>
+  <p style="font-size: 1.1rem; margin: 20px 0;">nehu & punchunu day! 💕</p>
   
   <div class="countdown">
     <div class="countdown-title">⏰ Days Until February 14th ⏰</div>
@@ -964,7 +1198,7 @@ Your Nehu 💗
     <p class="quiz-question">What was my first nickname for you? 💕</p>
     <input type="text" class="quiz-input" id="quizAnswer" placeholder="Type your answer...">
     <div id="quizFeedback"></div>
-    <p class="hint">Hint: jk, no hints for you hehe 😊</p>
+    <p class="hint">Hint: JK, no hint for you, figure it out hehe 😊</p>
     <button class="btn yes" onclick="checkAnswer()" style="margin-top: 15px;">Submit Answer 🎯</button>
   </div>
   
@@ -981,13 +1215,13 @@ Your Nehu 💗
     <div class="pointer"></div>
     <div class="wheel-wrapper">
       <div class="wheel" id="wheel">
-        <div class="wheel-segment segment-1">Dinner on me 🍽️</div>
-        <div class="wheel-segment segment-2">Lunch on me 🥗</div>
-        <div class="wheel-segment segment-3">Rs 100 💰</div>
-        <div class="wheel-segment segment-4">A naughty picture 😏</div>
-        <div class="wheel-segment segment-5">Movie night 🎬</div>
-        <div class="wheel-segment segment-6">Game night 🎮</div>
-        <div class="wheel-segment segment-7">Better luck next time loser 😂</div>
+        <div class="wheel-segment segment-1"><span style="transform: skewY(38.57deg) rotate(-25deg); display: block;">Dinner<br>on me 🍽️</span></div>
+        <div class="wheel-segment segment-2"><span style="transform: skewY(38.57deg) rotate(-25deg); display: block;">Lunch<br>on me 🥗</span></div>
+        <div class="wheel-segment segment-3"><span style="transform: skewY(38.57deg) rotate(-25deg); display: block;">Rs 100<br>💰</span></div>
+        <div class="wheel-segment segment-4"><span style="transform: skewY(38.57deg) rotate(-25deg); display: block;">A naughty<br>picture 😏</span></div>
+        <div class="wheel-segment segment-5"><span style="transform: skewY(38.57deg) rotate(-25deg); display: block;">Movie<br>night 🎬</span></div>
+        <div class="wheel-segment segment-6"><span style="transform: skewY(38.57deg) rotate(-25deg); display: block;">Game<br>night 🎮</span></div>
+        <div class="wheel-segment segment-7"><span style="transform: skewY(38.57deg) rotate(-25deg); display: block; font-size: 0.8rem;">Better luck<br>next time<br>loser 😂</span></div>
         <div class="wheel-center">💕</div>
       </div>
     </div>
@@ -1009,24 +1243,40 @@ Your Nehu 💗
   <p style="font-size: 1.05rem; color: #ff0000; margin: 15px 0; font-weight: 600;">This button is cursed. Bad things will happen. I warned you... 😏</p>
   <button class="danger-btn" onclick="danger()">🚫 DO NOT CLICK 🚫</button>
   <div class="danger-text" id="dangerText"> 
-    <p style="font-size: 1.4rem; color: #ff0000;">🙄 YOU CLICKED IT 🙄</p>
-    <p style="font-size: 1.1rem;">You literally NEVER listen to me!</p>
-    <p>I SPECIFICALLY told you not to...</p> 
-    <p>Well well well 😏</p> 
-    <p><strong style="font-size: 1.3rem; color: #ff5fa2;">Now you owe me:</strong></p>
-    <p style="font-size: 1.05rem;">✓ Unlimited hugs for life<br>✓ Unlimited kisses forever<br>✓ The CUTEST Valentine's Day ever<br>✓ All the cuddles in the world<br>✓ Your undivided attention always<br>✓ Random surprise dates<br>✓ Princess Treatment</p>
-    <p style="font-size: 1.3rem; margin-top: 20px; color: #ff5fa2;"><strong>No refunds! No complaints! No escape! 💕</strong></p>
+    <p style="font-size: 1.3rem; color: #5a0036; margin-bottom: 15px;">I SPECIFICALLY told you not to...</p>
+    <p style="font-size: 1.2rem; margin-bottom: 20px;">Well well well 😏</p>
+    
+    <div style="background: linear-gradient(135deg, #fff5fa, #ffe4f1); padding: 25px; border-radius: 20px; border: 3px solid #ff5fa2; margin: 20px 0;">
+      <p style="font-size: 2rem; margin-bottom: 15px;">🎤 Surprise Reward! 🎤</p>
+      <p style="font-size: 1.4rem; font-weight: bold; color: #ff5fa2; margin-bottom: 20px;">A Private Concert by Nehu</p>
+      
+      <div style="text-align: left; margin: 20px auto; max-width: 300px; font-size: 1.05rem; line-height: 1.8;">
+        <p><strong>🎵 Pitch:</strong> Questionable</p>
+        <p><strong>💪 Effort:</strong> 100%</p>
+        <p><strong>🚪 Mute options:</strong> None</p>
+      </div>
+      
+      <div style="font-size: 3rem; margin: 20px 0;">🎤🎵🎶</div>
+      
+      <p style="font-size: 1.1rem; color: #8a004f; margin-top: 20px; font-style: italic;">
+        You were warned. This is entirely your own fault. 😈
+      </p>
+    </div>
+    
+    <p style="font-size: 1.2rem; margin-top: 25px; color: #ff5fa2; font-weight: bold;">
+      Are you Ready? 💕
+    </p>
   </div> 
   <button class="btn yes" onclick="goYes()" style="margin-top: 25px;">⬅ Back to Menu</button> 
 </div>
 
 <div class="card hidden" id="ending">
-  <h1>You're Stuck With Me HAHAHA 😈</h1>
-  <p style="font-size: 1.3rem; margin: 20px 0;">No take backs. No refunds. No escaping. EVER.</p>
-  <p style="font-size: 1.15rem;">I hope you're ready for a <strong>shit ton</strong> of love, chaos, bullying, cuddles, random calls, endless yapping, and me being absolutely obsessed with you.</p>
+  <h1>You're Stuck With Me Forever 😈</h1>
+  <p style="font-size: 1.3rem; margin: 20px 0;">You're so lucky actually.</p>
+  <p style="font-size: 1.15rem;">I hope you're ready for a <strong>shit ton</strong> of love, chaos, cuddles, random calls, endless yapping, and me being absolutely obsessed with you.</p>
   <p style="font-size: 2.5rem; margin: 25px 0;">💕✨🎉😈</p>
   <p style="font-size: 1.15rem;"><em>Consider this your early Valentine's surprise, darling! 💗</em></p>
-  <p style="margin-top: 20px; font-size: 1.1rem;"><em>Get ready for Feb 14th...you better plan something crazy 😊</em></p>
+  <p style="margin-top: 20px; font-size: 1.1rem;"><em>Get ready for Feb 14th... you better plan something crazy 😊</em></p>
   <p style="margin-top: 25px; font-size: 1.3rem; color: #ff5fa2;"><strong>I love you, Punchunu 💕</strong></p>
 </div>
 
@@ -1054,6 +1304,103 @@ function createFloatingHearts() {
 }
 
 createFloatingHearts();
+
+/* IDENTITY VERIFICATION */
+function verifyPunchunu() {
+  createConfetti();
+  setTimeout(() => {
+    hideAll();
+    document.getElementById('screen1').classList.remove('hidden');
+  }, 1000);
+}
+
+function verifySomeoneElse() {
+  hideAll();
+  document.getElementById('accessDeniedScreen').classList.remove('hidden');
+  startGame();
+}
+
+/* MINI GAME - CATCH THE HEARTS */
+let gameScore = 0;
+let gameRunning = false;
+let gameInterval;
+
+function startGame() {
+  if (gameRunning) return;
+  gameRunning = true;
+  gameScore = 0;
+  document.getElementById('score').textContent = gameScore;
+  
+  const container = document.getElementById('gameContainer');
+  const basket = document.getElementById('basket');
+  
+  // Mouse/Touch movement
+  container.addEventListener('mousemove', (e) => {
+    const rect = container.getBoundingClientRect();
+    let x = e.clientX - rect.left - 40;
+    x = Math.max(0, Math.min(x, rect.width - 80));
+    basket.style.left = x + 'px';
+  });
+  
+  container.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    const rect = container.getBoundingClientRect();
+    let x = e.touches[0].clientX - rect.left - 40;
+    x = Math.max(0, Math.min(x, rect.width - 80));
+    basket.style.left = x + 'px';
+  });
+  
+  // Spawn hearts
+  gameInterval = setInterval(() => {
+    spawnHeart();
+  }, 1500);
+}
+
+function spawnHeart() {
+  const container = document.getElementById('gameContainer');
+  const heart = document.createElement('div');
+  heart.className = 'falling-heart';
+  heart.innerHTML = ['💕', '💖', '💗', '💝'][Math.floor(Math.random() * 4)];
+  heart.style.left = Math.random() * (container.offsetWidth - 40) + 'px';
+  heart.style.top = '-40px';
+  container.appendChild(heart);
+  
+  // Check collision
+  const checkCollision = setInterval(() => {
+    const heartRect = heart.getBoundingClientRect();
+    const basketRect = document.getElementById('basket').getBoundingClientRect();
+    
+    if (
+      heartRect.bottom >= basketRect.top &&
+      heartRect.top <= basketRect.bottom &&
+      heartRect.right >= basketRect.left &&
+      heartRect.left <= basketRect.right
+    ) {
+      gameScore++;
+      document.getElementById('score').textContent = gameScore;
+      heart.remove();
+      clearInterval(checkCollision);
+      createMiniConfetti(basketRect.left, basketRect.top);
+    }
+  }, 50);
+  
+  setTimeout(() => {
+    heart.remove();
+    clearInterval(checkCollision);
+  }, 3000);
+}
+
+function createMiniConfetti(x, y) {
+  for(let i = 0; i < 10; i++) {
+    const conf = document.createElement('div');
+    conf.className = 'confetti';
+    conf.style.left = x + 'px';
+    conf.style.top = y + 'px';
+    conf.style.background = ['#ff5fa2', '#ff8cc5', '#ffb3d9'][Math.floor(Math.random() * 3)];
+    document.body.appendChild(conf);
+    setTimeout(() => conf.remove(), 3000);
+  }
+}
 
 /* Enhanced sparkle cursor trail */
 document.addEventListener("mousemove", e => {
@@ -1149,8 +1496,13 @@ function checkAnswer() {
 }
 
 // Allow Enter key to submit
-document.getElementById('quizAnswer').addEventListener('keypress', function(e) {
-  if (e.key === 'Enter') checkAnswer();
+document.addEventListener('DOMContentLoaded', function() {
+  const quizInput = document.getElementById('quizAnswer');
+  if (quizInput) {
+    quizInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') checkAnswer();
+    });
+  }
 });
 
 /* SPIN THE WHEEL FUNCTIONALITY */
@@ -1177,7 +1529,6 @@ function spinWheel() {
   const prizeDisplay = document.getElementById('prizeDisplay');
   const prizeText = document.getElementById('prizeText');
   
-  // Random spins between 5-8 full rotations plus random segment
   const randomSpin = Math.floor(Math.random() * 3 + 5) * 360;
   const segmentAngle = 360 / 7;
   const randomSegment = Math.floor(Math.random() * 7);
@@ -1185,14 +1536,12 @@ function spinWheel() {
   
   wheel.style.transform = `rotate(${finalRotation}deg)`;
   
-  // Show result after animation
   setTimeout(() => {
     const prizeIndex = (7 - randomSegment) % 7;
     prizeText.textContent = prizes[prizeIndex];
     prizeDisplay.style.display = 'block';
     createConfetti();
     
-    // Allow spinning again after 3 seconds
     setTimeout(() => {
       hasSpun = false;
       btn.disabled = false;
@@ -1291,17 +1640,21 @@ function tryRunaway() {
   }, 150);
 }
 
-document.getElementById("noBtn").addEventListener("click", function() {
-  const msg = document.getElementById("noMessage");
-  msg.innerText = this.innerText;
-  hideAll();
-  document.getElementById("screenNo").classList.remove("hidden");
-});
+const noBtnElement = document.getElementById("noBtn");
+if (noBtnElement) {
+  noBtnElement.addEventListener("click", function() {
+    const msg = document.getElementById("noMessage");
+    msg.innerText = this.innerText;
+    hideAll();
+    document.getElementById("screenNo").classList.remove("hidden");
+  });
+}
 
 function goHome() {
   hideAll();
   document.getElementById("screen1").classList.remove("hidden");
-  document.getElementById("noBtn").style.transform = "translate(0, 0)";
+  const noBtn = document.getElementById("noBtn");
+  if (noBtn) noBtn.style.transform = "translate(0, 0)";
   noCount = 0;
 }
 
