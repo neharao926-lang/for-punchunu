@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anika Gandotra | CV</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #f5f3ee;
+    color: #222;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+h1 {
+    font-size: 40px;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: #777;
+    margin-bottom: 40px;
+    font-style: italic;
+}
+
+.section {
+    background: white;
+    margin-bottom: 20px;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.section-header {
+    padding: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 18px;
+    background: #fff;
+    transition: background 0.3s ease;
+    position: relative;
+    user-select: none;
+}
+
+.section-header:hover {
+    background: #f0ede6;
+}
+
+.section-header::after {
+    content: '+';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+.section.active .section-header::after {
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.section-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, pa
